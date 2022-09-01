@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hellodevstream
+  labels:
+    app: hellodevstream
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: hellodevstream
+  template:
+    metadata:
+      labels:
+        app: hellodevstream
+    spec:
+      containers:
+      - name: hellodevstream
+        image: "kehaokh/hellodevstream:{{ .Chart.AppVersion }}"
+        ports:
+        - containerPort: 8080
